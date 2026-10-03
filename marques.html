@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Marques et produits · COPHYD</title>
+<link rel="stylesheet" href="assets/css/corporate.css">
+</head>
+<body data-page="marques">
+<div data-header></div>
+<main>
+  <section class="band alu" style="padding:44px 0 34px">
+    <div class="wrap"><h1 style="font-size:clamp(2rem,6vw,3.4rem)">Marques et produits</h1>
+    <p class="lead" style="margin-top:12px">Choisissez une marque pour voir sa gamme. Chaque fiche donne le format et l'usage.</p></div>
+  </section>
+  <section class="band" style="padding-top:30px">
+    <div class="wrap">
+      <div class="filters" id="filters" role="group" aria-label="Filtrer par marque"></div>
+      <div id="intro" class="panel" style="display:grid;grid-template-columns:80px 1fr;gap:16px;align-items:center;margin-bottom:22px"></div>
+      <div class="grid" id="list"></div>
+    </div>
+  </section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/core.js"></script>
+<script>
+  const D = COPHYD, F = document.getElementById('filters'), L = document.getElementById('list'), I = document.getElementById('intro');
+  const card = p => `<a class="card" href="produit.html?id=${p.id}">${p.isnew?'<span class="tag">Nouveau</span>':p.best?'<span class="tag y">Best-seller</span>':''}<div class="ph"><img src="${p.img}" alt="${p.name}" loading="lazy"></div><div class="tx"><h3>${p.name}</h3><small>${p.size}${p.sub&&p.sub!==p.size?' · '+p.sub:''}</small></div></a>`;
+  function show(id){
+    if (id!=='all' && !D.brands.some(b=>b.id===id)) id='all';
+    F.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.id===id));
+    const b = D.brands.find(x=>x.id===id);
+    I.style.display = b ? 'grid' : 'none';
+    if (b) I.innerHTML = `<img src="${b.logo}" alt="Logo ${b.name}" style="max-height:60px;object-fit:contain"><div><b style="font:800 1.2rem Archivo">${b.name}</b><p style="color:var(--slate);font-size:.95rem">${b.line}</p></div>`;
+    const list = D.products.filter(p=>id==='all'||p.b===id);
+    L.innerHTML = list.length ? list.map(card).join('') : `<div class="panel" style="grid-column:1/-1"><h3>Gamme ${b.name} en cours de mise en ligne</h3><p style="color:var(--slate);margin:8px 0 16px">Les fiches de cette marque seront ajoutées avec les photos fournies par COPHYD.</p><a class="btn ghost" href="contact.html">Demander la fiche technique</a></div>`;
+    history.replaceState(null,'', id==='all'?'marques.html':'#'+id);
+  }
+  F.innerHTML = [['all','Toutes']].concat(D.brands.map(b=>[b.id,b.name])).map(([id,n])=>`<button data-id="${id}">${n}</button>`).join('');
+  F.addEventListener('click', e=>{ const b=e.target.closest('button'); if(b) show(b.dataset.id); });
+  show(location.hash.slice(1) || 'all');
+</script>
+</body>
+</html>

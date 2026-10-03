@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Distribution et revendeurs · COPHYD</title>
+<link rel="stylesheet" href="assets/css/corporate.css">
+</head>
+<body data-page="distribution">
+<div data-header></div>
+<main>
+  <section class="band alu" style="padding:44px 0 34px">
+    <div class="wrap"><h1 style="font-size:clamp(2rem,6vw,3.4rem)">Distribution</h1>
+    <p class="lead" style="margin-top:12px">En Algérie, auprès des grossistes et des commerces de proximité. À l'export, via le service MELICIA.</p></div>
+  </section>
+  <section class="band">
+    <div class="wrap cols">
+      <div>
+        <h2>Devenir revendeur</h2>
+        <p class="lead" style="margin:14px 0 22px">Supérette, droguerie, grossiste, station de lavage ou atelier : laissez vos coordonnées, le service commercial vous rappelle.</p>
+        <form data-fake class="panel">
+          <div class="two"><label>Nom du commerce<input required></label><label>Téléphone<input type="tel" required></label></div>
+          <div class="two">
+            <label>Wilaya<select data-wilayas required><option value="">Choisir</option></select></label>
+            <label>Activité<select required><option value="">Choisir</option><option>Grossiste</option><option>Supérette ou droguerie</option><option>Station de lavage</option><option>Garage ou atelier</option><option>Autre</option></select></label>
+          </div>
+          <fieldset style="border:0;padding:0"><legend style="font:600 14px Archivo;margin-bottom:8px">Marques qui vous intéressent</legend>
+            <div id="chk" style="display:flex;flex-wrap:wrap;gap:8px"></div></fieldset>
+          <button class="btn red" type="submit">Envoyer ma demande</button>
+          <p class="form-ok" hidden tabindex="-1">Demande envoyée. Le service commercial COPHYD vous rappelle.</p>
+        </form>
+      </div>
+      <div>
+        <div class="panel" style="margin-bottom:16px">
+          <h3>Où trouver nos produits ?</h3>
+          <p style="color:var(--slate);margin:8px 0 14px">Choisissez votre wilaya pour voir les points de vente partenaires.</p>
+          <select data-wilayas id="w" aria-label="Wilaya"><option value="">Votre wilaya</option></select>
+          <p id="wres" style="margin-top:14px;font-weight:600" aria-live="polite"></p>
+        </div>
+        <div class="panel">
+          <h3>Export : MELICIA</h3>
+          <p style="color:var(--slate);margin:8px 0 12px">Distribution vers l'Afrique et le Moyen-Orient.</p>
+          <p style="font-size:.93rem">Liban : Chouaifet El Qoubbeh<br>Chypre : Larnaca<br><a href="mailto:d.export@cophyd.com" style="font-weight:600">d.export@cophyd.com</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/core.js"></script>
+<script>
+  document.getElementById('chk').innerHTML = COPHYD.brands.map(b=>`<label style="font:600 13px Archivo;display:flex;flex-direction:row;align-items:center;gap:6px;border:1.5px solid var(--alu-2);border-radius:999px;padding:8px 12px"><input type="checkbox" style="width:auto"> ${b.name}</label>`).join('');
+  const w = document.getElementById('w'), r = document.getElementById('wres');
+  w.addEventListener('change', ()=> r.textContent = w.value ? `Les points de vente de ${w.value} s'afficheront ici une fois le réseau COPHYD renseigné. En attendant : ${COPHYD.contact.tel}.` : '');
+</script>
+</body>
+</html>

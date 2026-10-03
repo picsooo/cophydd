@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>COPHYD · Fabricant d'aérosols depuis 1971, Koléa</title>
+<link rel="stylesheet" href="assets/css/corporate.css">
+</head>
+<body data-page="home">
+<div data-header></div>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Créateur de force depuis 1971</h1>
+      <div>
+      <p class="lead">Entreprise familiale de Koléa, COPHYD conçoit ses formules et conditionne en aérosols sept marques présentes dans les foyers, les garages et les commerces de toute l'Algérie.</p>
+      <div class="ctas">
+        <a class="btn" href="marques.html">Voir nos marques</a>
+        <a class="btn ghost" href="distribution.html">Devenir revendeur</a>
+      </div>
+      </div>
+    </div>
+    <div class="shelf" id="shelf"></div>
+  </section>
+
+  <section class="facts" aria-label="Repères">
+    <div class="wrap">
+      <div class="fact"><b>1971</b><span>Création par feu Laribi Mohand Oussaid</span></div>
+      <div class="fact"><b>7</b><span>marques propres, formules maison</span></div>
+      <div class="fact"><b>3 ISO</b><span>9001 · 14001 · 45001</span></div>
+      <div class="fact"><b>Export</b><span>Afrique et Moyen-Orient</span></div>
+    </div>
+  </section>
+
+  <section class="band" id="marques">
+    <div class="wrap">
+      <div class="head"><h2>Sept marques, un savoir-faire</h2><p>De l'insecticide au parfum d'intérieur, chaque formule est élaborée à Koléa.</p></div>
+      <div class="brands" id="brands"></div>
+    </div>
+  </section>
+
+  <section class="band alu">
+    <div class="wrap best">
+      <div class="pic"><img id="bestImg" alt="STOP Spécial Volants Citron 750 ml"></div>
+      <div>
+        <span class="tag y" style="position:static;display:inline-block;margin-bottom:14px">Best-seller</span>
+        <h2>STOP, l'incontournable depuis plus de 50 ans</h2>
+        <p class="lead" style="margin:16px 0 24px">Mouches, moustiques, cafards, fourmis : sa formule agit par contact et par ingestion, vite et longtemps, et laisse la pièce parfumée.</p>
+        <a class="btn red" href="produit.html?id=stop-750">Voir la fiche produit</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="head"><h2>Nouveautés Ambisens</h2><a class="btn ghost" href="marques.html#ambisens">Toute la gamme</a></div>
+      <div class="grid" id="news"></div>
+    </div>
+  </section>
+
+  <section class="band alu">
+    <div class="wrap split">
+      <div class="photo"><img id="usine" alt="Site de production COPHYD à Koléa" loading="lazy"></div>
+      <div>
+        <h2>Une usine certifiée, une famille aux commandes</h2>
+        <p class="lead" style="margin-top:16px">Spécialiste du conditionnement d'aérosols, COPHYD élabore toutes les formules de ses marques. La société est dirigée par M. Essaid Laribi, aux côtés de son frère Hakim, dans la continuité de leur père fondateur.</p>
+        <div class="iso">
+          <span>ISO 9001<em>Qualité</em></span><span>ISO 14001<em>Environnement</em></span><span>ISO 45001<em>Santé et sécurité</em></span>
+        </div>
+        <p style="margin-top:20px;font:800 1.6rem/1 Archivo">135 collaborateurs</p>
+        <div class="validate">Chiffres à valider par l'administration de COPHYD</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap cols">
+      <div>
+        <h2>Vous êtes grossiste, supérette ou station de lavage ?</h2>
+        <p class="lead" style="margin:16px 0 24px">Indiquez votre wilaya : le service commercial vous rappelle avec les conditions revendeurs et le point de distribution le plus proche.</p>
+        <a class="btn" href="distribution.html">Faire une demande</a>
+      </div>
+      <div class="panel">
+        <h3>Export</h3>
+        <p style="margin:8px 0 14px;color:var(--slate)">Le service export MELICIA distribue les marques COPHYD vers l'Afrique et le Moyen-Orient, depuis le Liban et Chypre.</p>
+        <a href="mailto:d.export@cophyd.com" style="font-weight:600">d.export@cophyd.com</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/core.js"></script>
+<script>
+  const D = COPHYD;
+  const pick = ['stop-750','amb-wc','kro-marine','gazal-400','sdidox','amb-petales'].map(i=>D.products.find(p=>p.id===i));
+  document.getElementById('shelf').innerHTML = pick.map(p=>`<a href="produit.html?id=${p.id}"><img src="${p.img}" alt="${p.name}"></a>`).join('');
+  document.getElementById('brands').innerHTML = D.brands.map(b=>`
+    <a class="brand" href="marques.html#${b.id}"><div class="lg"><img src="${b.logo}" alt="Logo ${b.name}" loading="lazy"></div>
+    <div><small>${b.cat}</small><h3>${b.name}</h3><p>${b.line}</p></div></a>`).join('');
+  document.getElementById('bestImg').src = D.products[0].img;
+  document.getElementById('usine').src = D.photos.usine;
+  const card = p => `<a class="card" href="produit.html?id=${p.id}">${p.isnew?'<span class="tag">Nouveau</span>':''}<div class="ph"><img src="${p.img}" alt="${p.name}" loading="lazy"></div><div class="tx"><h3>${p.name}</h3><small>${p.size}</small></div></a>`;
+  document.getElementById('news').innerHTML = D.products.filter(p=>p.isnew).concat(D.products.filter(p=>p.sub==='À forme').slice(0,1)).map(card).join('');
+</script>
+</body>
+</html>

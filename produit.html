@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Fiche produit · COPHYD</title>
+<link rel="stylesheet" href="assets/css/corporate.css">
+</head>
+<body data-page="marques">
+<div data-header></div>
+<main class="wrap">
+  <nav class="crumb" id="crumb" aria-label="Fil d'Ariane"></nav>
+  <div class="pp">
+    <div class="pic"><img id="pimg" alt=""></div>
+    <div>
+      <small id="pbrand" style="font:600 13px Archivo;color:var(--signal)"></small>
+      <h1 id="pname" style="font-size:clamp(1.9rem,5vw,3rem);margin-top:6px"></h1>
+      <p id="ptxt" class="lead" style="margin-top:14px"></p>
+      <dl><dt>Marque</dt><dd id="d-brand"></dd><dt>Format</dt><dd id="d-size"></dd><dt>Gamme</dt><dd id="d-sub"></dd><dt>Fabrication</dt><dd>Koléa, Algérie</dd></dl>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <a class="btn red" href="distribution.html">Trouver un revendeur</a>
+        <a class="btn ghost" href="contact.html">Demander la fiche technique</a>
+      </div>
+      <div class="validate">Mode d'emploi et précautions à reprendre des étiquettes COPHYD</div>
+    </div>
+  </div>
+  <section style="padding-bottom:70px"><h2 style="margin-bottom:20px">Dans la même marque</h2><div class="grid" id="more"></div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/core.js"></script>
+<script>
+  const D = COPHYD, id = new URLSearchParams(location.search).get('id') || 'stop-750';
+  const p = D.products.find(x=>x.id===id) || D.products[0], b = D.brands.find(x=>x.id===p.b);
+  const $ = i => document.getElementById(i);
+  document.title = p.name + ' · COPHYD';
+  $('pimg').src = p.img; $('pimg').alt = p.name; $('pbrand').textContent = b.name + ' · ' + b.cat; $('pname').textContent = p.name; $('ptxt').textContent = p.txt;
+  $('d-brand').textContent = b.name; $('d-size').textContent = p.size; $('d-sub').textContent = p.sub || b.cat;
+  $('crumb').innerHTML = `<a href="marques.html">Marques</a> / <a href="marques.html#${b.id}">${b.name}</a> / ${p.name}`;
+  const card = q => `<a class="card" href="produit.html?id=${q.id}"><div class="ph"><img src="${q.img}" alt="${q.name}" loading="lazy"></div><div class="tx"><h3>${q.name}</h3><small>${q.size}</small></div></a>`;
+  const others = D.products.filter(q=>q.b===p.b && q.id!==p.id).slice(0,4);
+  $('more').innerHTML = (others.length?others:D.products.filter(q=>q.id!==p.id).slice(0,4)).map(card).join('');
+</script>
+</body>
+</html>
