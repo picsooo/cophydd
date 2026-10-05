@@ -42,6 +42,5 @@
   F.innerHTML = [['all','Toutes']].concat(D.brands.map(b=>[b.id,b.name])).map(([id,n])=>`<button data-id="${id}">${n}</button>`).join('');
   F.addEventListener('click', e=>{ const b=e.target.closest('button'); if(b) show(b.dataset.id); });
   show(location.hash.slice(1) || 'all');
-</script>
-<script src="https://radar-xi-flax.vercel.app/t.js" defer></script></body>
+</script></body>
 </html>

@@ -55,6 +55,5 @@
   document.getElementById('chk').innerHTML = COPHYD.brands.map(b=>`<label style="font:600 13px Archivo;display:flex;flex-direction:row;align-items:center;gap:6px;border:1.5px solid var(--alu-2);border-radius:999px;padding:8px 12px"><input type="checkbox" style="width:auto"> ${b.name}</label>`).join('');
   const w = document.getElementById('w'), r = document.getElementById('wres');
   w.addEventListener('change', ()=> r.textContent = w.value ? `Les points de vente de ${w.value} s'afficheront ici une fois le réseau COPHYD renseigné. En attendant : ${COPHYD.contact.tel}.` : '');
-</script>
-<script src="https://radar-xi-flax.vercel.app/t.js" defer></script></body>
+</script></body>
 </html>

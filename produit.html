@@ -42,6 +42,5 @@
   const card = q => `<a class="card" href="produit.html?id=${q.id}"><div class="ph"><img src="${q.img}" alt="${q.name}" loading="lazy"></div><div class="tx"><h3>${q.name}</h3><small>${q.size}</small></div></a>`;
   const others = D.products.filter(q=>q.b===p.b && q.id!==p.id).slice(0,4);
   $('more').innerHTML = (others.length?others:D.products.filter(q=>q.id!==p.id).slice(0,4)).map(card).join('');
-</script>
-<script src="https://radar-xi-flax.vercel.app/t.js" defer></script></body>
+</script></body>
 </html>

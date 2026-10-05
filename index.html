@@ -106,6 +106,5 @@
   document.getElementById('usine').src = D.photos.usine;
   const card = p => `<a class="card" href="produit.html?id=${p.id}">${p.isnew?'<span class="tag">Nouveau</span>':''}<div class="ph"><img src="${p.img}" alt="${p.name}" loading="lazy"></div><div class="tx"><h3>${p.name}</h3><small>${p.size}</small></div></a>`;
   document.getElementById('news').innerHTML = D.products.filter(p=>p.isnew).concat(D.products.filter(p=>p.sub==='À forme').slice(0,1)).map(card).join('');
-</script>
-<script src="https://radar-xi-flax.vercel.app/t.js" defer></script></body>
+</script></body>
 </html>
